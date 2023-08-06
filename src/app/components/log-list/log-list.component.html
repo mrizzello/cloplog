@@ -1,0 +1,20 @@
+<div *ngIf="logs.length > 0">
+  <div *ngFor="let log of logs">
+    <div>
+      {{log.id}} - {{ log.datetime }}
+    </div>
+    <div>
+      <button (click)="showEdit[log.id] = !showEdit[log.id]">Edit</button>
+      <app-log-edit *ngIf="showEdit[log.id]" [log]="log" (updated)="onUpdated($event)"></app-log-edit>
+    </div>
+    <div>
+      <button (click)="showDelete[log.id] = !showDelete[log.id]">Delete</button>
+      <app-log-delete *ngIf="showDelete[log.id]" [log]="log" (deleted)="onDeleted($event)"></app-log-delete>
+    </div>
+    <hr/>
+  </div>
+</div>
+
+<div *ngIf="logs.length === 0">
+  <p>No logs found.</p>
+</div>

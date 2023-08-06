@@ -1,0 +1,15 @@
+<br />
+<br />
+<br />
+<button (click)="exportToCSV()">Export to CSV</button>
+<br />
+<br />
+<br />
+<button (click)="resetIndexedDB()">Clear database</button>
+<div *ngIf="clearingDatabase">clearing database</div>
+<br />
+<br />
+<br />
+<input type="file" (change)="importCSV($event)">
+<div>Clear database before importing</div>
+<div *ngIf="importingDatabase">importing database</div>
