@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { LogEditComponent } from '../../components/log-edit/log-edit.component';
 import { LogDeleteComponent } from '../../components/log-delete/log-delete.component';
 import { DatastoreService } from '../../services/datastore.service';
+import { UpdateDisplayService } from '../../services/update-display.service';
 
 @Component({
   selector: 'app-log-list',
@@ -17,7 +18,8 @@ export class LogListComponent implements OnInit {
 
   constructor(
     private dataStore: DatastoreService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private udService: UpdateDisplayService
   ) {}
 
   ngOnInit() {
@@ -36,6 +38,7 @@ export class LogListComponent implements OnInit {
       }else{
         this.logs = [];
       }
+      this.udService.updateDisplay();
     })
   }
 

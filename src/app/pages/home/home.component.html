@@ -1,2 +1,12 @@
-<button type="button" (click)="Log()">Log</button>
+<mat-grid-list cols="2" rowHeight="2:1" gutterSize="0.2rem">
+    <mat-grid-tile colspan="2" rowspan="2">
+        <div class="log-button-container {{cssClicked}}">
+            <img src = "/assets/log-button.svg" (click)="Log()" />
+        </div>
+    </mat-grid-tile>
+    <mat-grid-tile colspan="1" rowspan="1">
+        <app-log-counter-today></app-log-counter-today>
+    </mat-grid-tile>
+    <mat-grid-tile colspan="1" rowspan="1">TODO</mat-grid-tile>
+</mat-grid-list>
 <app-log-list [limit]="lastLogsLimit"></app-log-list>
