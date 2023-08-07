@@ -1,0 +1,83 @@
+{
+  "configVersion": 1,
+  "timestamp": 1691430434707,
+  "index": "/cloplog/index.html",
+  "assetGroups": [
+    {
+      "name": "app",
+      "installMode": "prefetch",
+      "updateMode": "prefetch",
+      "cacheQueryOptions": {
+        "ignoreVary": true
+      },
+      "urls": [
+        "/cloplog/favicon.ico",
+        "/cloplog/index.html",
+        "/cloplog/main.28de9cc9d3570e95.js",
+        "/cloplog/manifest.webmanifest",
+        "/cloplog/polyfills.2fad8a5f3894e24f.js",
+        "/cloplog/runtime.bee20c8ad29e9fad.js",
+        "/cloplog/styles.6692eb6a4a2e4167.css"
+      ],
+      "patterns": []
+    },
+    {
+      "name": "assets",
+      "installMode": "lazy",
+      "updateMode": "prefetch",
+      "cacheQueryOptions": {
+        "ignoreVary": true
+      },
+      "urls": [
+        "/cloplog/assets/icons/icon-128x128.png",
+        "/cloplog/assets/icons/icon-144x144.png",
+        "/cloplog/assets/icons/icon-152x152.png",
+        "/cloplog/assets/icons/icon-192x192.png",
+        "/cloplog/assets/icons/icon-384x384.png",
+        "/cloplog/assets/icons/icon-512x512.png",
+        "/cloplog/assets/icons/icon-72x72.png",
+        "/cloplog/assets/icons/icon-96x96.png",
+        "/cloplog/assets/log-button.svg"
+      ],
+      "patterns": []
+    }
+  ],
+  "dataGroups": [],
+  "hashTable": {
+    "/cloplog/assets/icons/icon-128x128.png": "0eddc854a8bffcd559724f04f942a08f23460845",
+    "/cloplog/assets/icons/icon-144x144.png": "900dad1f57ffaad60700d762d09b60540f7116e7",
+    "/cloplog/assets/icons/icon-152x152.png": "c3f71214274582adb9d6ccded3c6a58217d948e5",
+    "/cloplog/assets/icons/icon-192x192.png": "00588d4420be9dd433f6e8352a2b8ac85824d261",
+    "/cloplog/assets/icons/icon-384x384.png": "213429cb710ad38b0278ded4d7d4ed298290c715",
+    "/cloplog/assets/icons/icon-512x512.png": "b6e249dc2fb885182ddac48fc5d8024b2b4762b7",
+    "/cloplog/assets/icons/icon-72x72.png": "ad0d9df0ad3d2dc1ed616367453f31c9fa45a669",
+    "/cloplog/assets/icons/icon-96x96.png": "5789b2bb77d3fe74aa5a8a02d760346496c3745b",
+    "/cloplog/assets/log-button.svg": "ef262f89237f86fff2ffccb7edc233389e0beb7d",
+    "/cloplog/favicon.ico": "6cb4902beebecc9999fb17967d03c5560b782ecc",
+    "/cloplog/index.html": "cafb8505e185d59c5a119a036785b8a2acd24fe1",
+    "/cloplog/main.28de9cc9d3570e95.js": "ad3f1cb7318dbacab71ac6acbf5bea9e99199d47",
+    "/cloplog/manifest.webmanifest": "ab308555ced22c55560c84708fefa360862700b3",
+    "/cloplog/polyfills.2fad8a5f3894e24f.js": "a1fb557837b48baca97fd8a422cf4d35548487d5",
+    "/cloplog/runtime.bee20c8ad29e9fad.js": "53c74a02efd7813d8f54f89b6695c4c0d0476a55",
+    "/cloplog/styles.6692eb6a4a2e4167.css": "47ea8db60a77c51fb48d54b2c199045eb8666b00"
+  },
+  "navigationUrls": [
+    {
+      "positive": true,
+      "regex": "^\\/.*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*\\.[^/]*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*__[^/]*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*__[^/]*\\/.*$"
+    }
+  ],
+  "navigationRequestStrategy": "performance"
+}
