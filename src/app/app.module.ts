@@ -15,6 +15,7 @@ import { LogEditComponent } from './components/log-edit/log-edit.component';
 import { LogDeleteComponent } from './components/log-delete/log-delete.component';
 import { DatabaseAdminComponent } from './pages/database-admin/database-admin.component';
 import { LogCounterTodayComponent } from './components/log-counter-today/log-counter-today.component';
+import { TimeSinceLastComponent } from './components/time-since-last/time-since-last.component';
 
 const dbConfig: DBConfig  = {
   name: 'cloplog',
@@ -36,7 +37,8 @@ const dbConfig: DBConfig  = {
     LogEditComponent,
     LogDeleteComponent,
     DatabaseAdminComponent,
-    LogCounterTodayComponent
+    LogCounterTodayComponent,
+    TimeSinceLastComponent
   ],
   imports: [
     BrowserModule,

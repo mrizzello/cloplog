@@ -7,6 +7,8 @@
     <mat-grid-tile colspan="1" rowspan="1">
         <app-log-counter-today></app-log-counter-today>
     </mat-grid-tile>
-    <mat-grid-tile colspan="1" rowspan="1">TODO</mat-grid-tile>
+    <mat-grid-tile colspan="1" rowspan="1">
+        <app-time-since-last></app-time-since-last>
+    </mat-grid-tile>
 </mat-grid-list>
 <app-log-list [limit]="lastLogsLimit"></app-log-list>

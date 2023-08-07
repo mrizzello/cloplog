@@ -1,15 +1,16 @@
-.log-count {
+.time-since-last {
     text-align: center;
 
-    .label {
+    .label{
         font-size: 67%;
         color: #666;
     }
 
-    .count {
+    .time {
         font-weight: bold;
-        font-size: 300%;
+        font-size: 120%;
         color: #009688;
+        line-height: 120%;
         margin-top: 0.33rem;
     }
 }
