@@ -46,7 +46,7 @@ export class TimeSinceLastComponent implements OnInit {
         const timeDifference = currentTime - logTime;
         this.timeSinceLastLog = this.formatTimeDifference(timeDifference);
       } else {
-        this.timeSinceLastLog = 'No logs found.';
+        this.timeSinceLastLog = '-';
       }
     });
   }
