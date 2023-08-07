@@ -1,6 +1,8 @@
-<div *ngIf="log">
-    <form>
-        <button type="button" (click)="deleteLog()">Delete</button>
-        <button type="button" (click)="cancel()">Cancel</button>
-    </form>
-</div>
+<h2 mat-dialog-title>Supprimer</h2>
+<mat-dialog-content class="mat-typography" *ngIf="log">
+    <div>{{ formatDate(log.datetime) }} {{ formatTime(log.datetime) }} ?</div>
+    <div class="button-row">
+        <button mat-raised-button (click)="onCancelClick()">Annuler</button>
+        <button mat-raised-button color="warn" (click)="onDeleteClick()">Delete</button>
+    </div>
+</mat-dialog-content>

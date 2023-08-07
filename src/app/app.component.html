@@ -1,4 +1,35 @@
-<button type="button" (click)="navigateAndCloseNav('/')">home</button>
-<button type="button" (click)="navigateAndCloseNav('/log-list')">list</button>
-<button type="button" (click)="navigateAndCloseNav('/settings')">settings</button>
-<router-outlet></router-outlet>
+<div>
+    <mat-drawer-container class="drawer-container" autosize>
+        <mat-drawer #drawer class="sidenav" mode="push" position="end">
+            <mat-nav-list>
+                <a mat-list-item (click)="navigateAndCloseNav('/')">
+                    <mat-icon matListItemIcon>home</mat-icon>Accueil</a>
+            </mat-nav-list>
+            <mat-nav-list>
+                <a mat-list-item (click)="navigateAndCloseNav('/log-list')">
+                    <mat-icon matListItemIcon>settings_backup_restore</mat-icon>Liste</a>
+            </mat-nav-list>
+            <mat-nav-list>
+                <a mat-list-item (click)="navigateAndCloseNav('/settings')">
+                    <mat-icon matListItemIcon>grid_on</mat-icon>Paramètres</a>
+            </mat-nav-list>
+        </mat-drawer>
+        <div class="container">
+            <mat-toolbar class="toolbar" color="primary">
+                <button mat-icon-button>
+                </button>
+                <span class="spacer"></span>
+                <a routerLink="/" class="sitename">
+                    <span class="appname">ClopLog</span>
+                </a>
+                <span class="spacer"></span>
+                <button mat-icon-button (click)="drawer.toggle()">
+                    <mat-icon class="icon-menu">menu</mat-icon>
+                </button>
+            </mat-toolbar>
+            <div class="content">
+                <router-outlet></router-outlet>
+            </div>
+        </div>
+    </mat-drawer-container>
+</div>

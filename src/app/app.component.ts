@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
+import { MatDrawer } from '@angular/material/sidenav';
 import { NgxIndexedDBService } from 'ngx-indexed-db';
 
 @Component({
@@ -9,6 +10,9 @@ import { NgxIndexedDBService } from 'ngx-indexed-db';
 })
 export class AppComponent {
   title = 'cloplog';
+
+  @ViewChild('drawer') drawer!: MatDrawer;
+
   constructor(
     private dbService: NgxIndexedDBService,
     private router: Router
@@ -17,6 +21,6 @@ export class AppComponent {
   
   navigateAndCloseNav(path:string): void {
     this.router.navigate([path]);
-    // this.drawer.close();
+    this.drawer.close();
   }
 }

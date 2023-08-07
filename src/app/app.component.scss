@@ -1,0 +1,47 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.content {
+    flex-grow: 1;
+    overflow-y: auto;
+    width: 100%;
+    max-width: 420px;
+    margin: 0 auto;
+}
+
+.toolbar {
+    .sitename {
+        text-decoration: none;
+        color: #fff;
+
+        .appname {
+            font-weight: bold;
+        }
+
+        .ch {
+            font-weight: lighter;
+        }
+    }
+
+    .icon-menu {
+        color: #ffffff;
+    }
+
+}
+
+.spacer {
+    flex: 1 1 auto;
+}
+
+.sidenav {
+    .mat-mdc-list-item {
+        margin-right: 2rem;
+
+        .mat-icon {
+            margin: 0 1rem;
+        }
+    }
+}

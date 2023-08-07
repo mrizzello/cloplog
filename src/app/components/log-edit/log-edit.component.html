@@ -1,8 +1,19 @@
-<div *ngIf="log">
+<h2 mat-dialog-title>Modifier</h2>
+<mat-dialog-content class="mat-typography" *ngIf="log">
     <form>
-        <label for="datetime">Date and Time:</label>
-        <input type="text" id="datetime" [(ngModel)]="log.datetime" name="datetime">
-        <button type="button" (click)="updateLog()">Save</button>
-        <button type="button" (click)="cancel()">Cancel</button>
+        <mat-form-field>
+            <mat-label>Date</mat-label>
+            <input matInput [matDatepicker]="datetime" [(ngModel)]="dateValue" name="dateValue">
+            <mat-datepicker-toggle matIconSuffix [for]="datetime"></mat-datepicker-toggle>
+            <mat-datepicker #datetime></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Time</mat-label>
+            <input matInput type="time" [(ngModel)]="timeValue" name="timeValue">
+          </mat-form-field>
+        <div class="button-row">
+            <button mat-raised-button (click)="onCancelClick()">Annuler</button>
+            <button mat-raised-button color="primary" (click)="onSaveClick()">Enregistrer</button>
+        </div>
     </form>
-</div>
+</mat-dialog-content>

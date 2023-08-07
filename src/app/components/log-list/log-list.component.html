@@ -1,20 +1,30 @@
 <div *ngIf="logs.length > 0">
-  <div *ngFor="let log of logs">
-    <div>
-      {{log.id}} - {{ log.datetime }}
-    </div>
-    <div>
-      <button (click)="showEdit[log.id] = !showEdit[log.id]">Edit</button>
-      <app-log-edit *ngIf="showEdit[log.id]" [log]="log" (updated)="onUpdated($event)"></app-log-edit>
-    </div>
-    <div>
-      <button (click)="showDelete[log.id] = !showDelete[log.id]">Delete</button>
-      <app-log-delete *ngIf="showDelete[log.id]" [log]="log" (deleted)="onDeleted($event)"></app-log-delete>
-    </div>
-    <hr/>
-  </div>
+  <mat-list>
+    <mat-list-item *ngFor="let log of logs">
+      <div class="list-item">
+        <span class="date">
+          <mat-icon class="info-icon">smoking_rooms</mat-icon>
+          {{ formatDate(log.datetime) }}
+        </span>
+        <span class="time">
+          <mat-icon class="info-icon">schedule</mat-icon>
+          {{ formatTime(log.datetime) }}
+        </span>
+        <span class="button-row">
+          <button mat-icon-button color="primary" (click)="openEditDialog(log)">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button mat-icon-button color="warn" (click)="openDeleteDialog(log)">
+            <mat-icon>clear</mat-icon>
+          </button>
+        </span>
+      </div>
+    </mat-list-item>
+  </mat-list>
 </div>
 
 <div *ngIf="logs.length === 0">
-  <p>No logs found.</p>
+  <mat-list>
+    <mat-list-item>No logs found.</mat-list-item>
+  </mat-list>
 </div>
