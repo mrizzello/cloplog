@@ -6,7 +6,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MaterialModule } from './material.module';
-import { LOCALE_ID } from '@angular/core';
+import { LOCALE_ID, isDevMode } from '@angular/core';
 import { NgxIndexedDBModule, DBConfig } from 'ngx-indexed-db';
 
 import { HomeComponent } from './pages/home/home.component';
@@ -16,6 +16,7 @@ import { LogDeleteComponent } from './components/log-delete/log-delete.component
 import { DatabaseAdminComponent } from './pages/database-admin/database-admin.component';
 import { LogCounterTodayComponent } from './components/log-counter-today/log-counter-today.component';
 import { TimeSinceLastComponent } from './components/time-since-last/time-since-last.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
 
 const dbConfig: DBConfig  = {
   name: 'cloplog',
@@ -46,7 +47,13 @@ const dbConfig: DBConfig  = {
     NgxIndexedDBModule.forRoot(dbConfig),
     FormsModule,
     BrowserAnimationsModule,
-    MaterialModule
+    MaterialModule,
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: !isDevMode(),
+      // Register the ServiceWorker as soon as the application is stable
+      // or after 30 seconds (whichever comes first).
+      registrationStrategy: 'registerWhenStable:30000'
+    })
   ],
   providers: [
     { provide: LOCALE_ID, useValue: 'fr-FR' }
