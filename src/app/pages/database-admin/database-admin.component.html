@@ -1,14 +1,38 @@
-<br />
-<br />
-<br />
-<button (click)="exportToCSV()">Export to CSV</button>
-<br />
-<br />
-<br />
-<button (click)="resetIndexedDB()">Clear database</button>
-<div *ngIf="clearingMessage">{{clearingMessage}}</div>
-<br />
-<br />
-<br />
-<input type="file" (change)="importCSV($event)">
-<div *ngIf="importingMessage">{{importingMessage}}</div>
+<div class="admin-container">
+    <h3>Settings</h3>
+    <mat-card>
+        <mat-card-header>
+            <mat-card-title>Export data to a CSV file</mat-card-title>
+        </mat-card-header>
+        <mat-card-actions align="end">
+            <button mat-raised-button color="primary" (click)="exportToCSV()">Export to CSV</button>
+        </mat-card-actions>
+    </mat-card>
+
+    <mat-card>
+        <mat-card-header>
+            <mat-card-title>Clear all data</mat-card-title>
+            <mat-card-subtitle><i>Export data to a CSV file before clearing.</i></mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content *ngIf="clearingMessage">
+            <p>{{clearingMessage}}</p>
+        </mat-card-content>
+        <mat-card-actions align="end">
+            <button mat-raised-button color="warn" (click)="resetIndexedDB()">Clear database</button>
+        </mat-card-actions>
+    </mat-card>
+
+    <mat-card>
+        <mat-card-header>
+            <mat-card-title>Import CSV file</mat-card-title>
+            <mat-card-subtitle><i>Current data will be erased.</i></mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content *ngIf="importingMessage">
+            <div>{{importingMessage}}</div>
+        </mat-card-content>
+        <mat-card-actions align="end">
+            <button mat-raised-button color="primary" (click)="fileInput.click()">Choose File</button>
+            <input hidden (change)="importCSV($event)" #fileInput type="file" id="file">
+        </mat-card-actions>
+    </mat-card>
+</div>
