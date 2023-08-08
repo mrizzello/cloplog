@@ -31,7 +31,7 @@
             <mat-progress-bar mode="indeterminate"></mat-progress-bar>
         </mat-card-content>
         <mat-card-actions align="end">
-            <button mat-raised-button color="primary" (click)="fileInput.click()">Choose File</button>
+            <button mat-raised-button color="primary" (click)="fileInput.click()">Choisir le fichier</button>
             <input hidden (change)="importCSV($event)" #fileInput type="file" id="file">
         </mat-card-actions>
     </mat-card>
