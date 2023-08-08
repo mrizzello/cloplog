@@ -1,7 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { MatDrawer } from '@angular/material/sidenav';
-import { NgxIndexedDBService } from 'ngx-indexed-db';
 
 @Component({
   selector: 'app-root',
@@ -14,7 +13,6 @@ export class AppComponent {
   @ViewChild('drawer') drawer!: MatDrawer;
 
   constructor(
-    private dbService: NgxIndexedDBService,
     private router: Router
   ) {
   }

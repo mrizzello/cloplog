@@ -1,6 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { DatastoreService } from '../../services/datastore.service';
+import { DateFormatService } from '../../services/date-format.service';
 
 @Component({
   selector: 'app-log-delete',
@@ -14,13 +15,14 @@ export class LogDeleteComponent {
   constructor(
     private dataStore: DatastoreService,
     public dialogRef: MatDialogRef<LogDeleteComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    private dateFormat : DateFormatService
   ) {
     this.log = data;
   }
 
   onDeleteClick(): void {
-    this.dataStore.delete(this.log).subscribe(() => {
+    this.dataStore.delete(this.log).then(() => {
       this.dialogRef.close(this.log);
     });
   }
@@ -29,18 +31,12 @@ export class LogDeleteComponent {
     this.dialogRef.close();
   }
   
-  formatDate(datetimeString: string): string {
-    const dateObj = new Date(datetimeString);
-    const day = dateObj.getDate().toString().padStart(2, '0');
-    const month = (dateObj.getMonth() + 1).toString().padStart(2, '0');
-    const year = dateObj.getFullYear();
-    return `${day}.${month}.${year}`;    
+  formatDate(timestamp: number): string {
+    return this.dateFormat.formatDate(timestamp);
   }
 
-  formatTime(datetimeString: string): string {
-    const dateObj = new Date(datetimeString);
-    const hours = dateObj.getHours().toString().padStart(2, '0');
-    const minutes = dateObj.getMinutes().toString().padStart(2, '0');
-    return `${hours}:${minutes}`;
+  formatTime(timestamp: number): string {
+    return this.dateFormat.formatTime(timestamp);
   }
+
 }

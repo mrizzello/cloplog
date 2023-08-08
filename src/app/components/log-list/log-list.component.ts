@@ -4,6 +4,7 @@ import { LogEditComponent } from '../../components/log-edit/log-edit.component';
 import { LogDeleteComponent } from '../../components/log-delete/log-delete.component';
 import { DatastoreService } from '../../services/datastore.service';
 import { UpdateDisplayService } from '../../services/update-display.service';
+import { DateFormatService } from '../../services/date-format.service';
 
 @Component({
   selector: 'app-log-list',
@@ -19,7 +20,8 @@ export class LogListComponent implements OnInit {
   constructor(
     private dataStore: DatastoreService,
     private dialog: MatDialog,
-    private udService: UpdateDisplayService
+    private udService: UpdateDisplayService,
+    private dateFormat: DateFormatService
   ) {}
 
   ngOnInit() {
@@ -27,19 +29,16 @@ export class LogListComponent implements OnInit {
   }
 
   fetchLogs() {
-    this.dataStore.getAll().subscribe((logs:any)=>{
-      if( logs.length > 0 ){
-        logs.sort((a:any, b:any) => (Date.parse(a.datetime) > Date.parse(b.datetime) ? -1 : 1));      
-        if( this.limit !== undefined ){
-          this.logs = logs.slice(0, this.limit);
-        }else{
-          this.logs = logs;
-        }
-      }else{
-        this.logs = [];
-      }
-      this.udService.updateDisplay();
-    })
+    if(this.limit !== undefined){
+      this.dataStore.getLast(this.limit).then((logs:any)=>{      
+        this.logs = logs;
+      });
+    }else{
+      this.dataStore.getAll().then((logs:any)=>{      
+        this.logs = logs;
+      });
+    }
+    this.udService.updateDisplay();
   }
 
   openEditDialog(log: any) {
@@ -66,42 +65,15 @@ export class LogListComponent implements OnInit {
     });
   }
 
-  _formatDate(dateObj: Date): string{
-    const day = dateObj.getDate().toString().padStart(2, '0');
-    const month = (dateObj.getMonth() + 1).toString().padStart(2, '0');
-    const year = dateObj.getFullYear();
-    return `${day}.${month}.${year}`;
-  }
-  
-  formatDate(datetimeString: string): string {
-    const dateObj = new Date(datetimeString);
-
+  formatDate(timestamp: number): string {
     if(this.limit !== undefined){
-      const currentDate = new Date();
-  
-      const isToday = dateObj.toDateString() === currentDate.toDateString();
-      currentDate.setDate(currentDate.getDate() - 1);
-      const isYesterday = dateObj.toDateString() === currentDate.toDateString();
-    
-      if (isToday) {
-        return 'aujourd\'hui';
-      } else if (isYesterday) {
-        return 'hier';
-      } else {
-        return this._formatDate(dateObj);
-      }
+      return this.dateFormat.formatDateContext(timestamp);
     }
-
-    return this._formatDate(dateObj);
-    
+    return this.dateFormat.formatDate(timestamp);
   }
 
-  formatTime(datetimeString: string): string {
-    const dateObj = new Date(datetimeString);
-    const hours = dateObj.getHours().toString().padStart(2, '0');
-    const minutes = dateObj.getMinutes().toString().padStart(2, '0');
-    return `${hours}:${minutes}`;
+  formatTime(timestamp: number): string {
+    return this.dateFormat.formatTime(timestamp);
   }
-  
   
 }

@@ -7,7 +7,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MaterialModule } from './material.module';
 import { LOCALE_ID, isDevMode } from '@angular/core';
-import { NgxIndexedDBModule, DBConfig } from 'ngx-indexed-db';
 
 import { HomeComponent } from './pages/home/home.component';
 import { LogListComponent } from './components/log-list/log-list.component';
@@ -17,18 +16,6 @@ import { DatabaseAdminComponent } from './pages/database-admin/database-admin.co
 import { LogCounterTodayComponent } from './components/log-counter-today/log-counter-today.component';
 import { TimeSinceLastComponent } from './components/time-since-last/time-since-last.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
-
-const dbConfig: DBConfig  = {
-  name: 'cloplog',
-  version: 1,
-  objectStoresMeta: [{
-    store: 'logs',
-    storeConfig: { keyPath: 'id', autoIncrement: true },
-    storeSchema: [
-      { name: 'datetime', keypath: 'datetime', options: { unique: false } }
-    ]
-  }]
-};
 
 @NgModule({
   declarations: [
@@ -44,14 +31,11 @@ const dbConfig: DBConfig  = {
   imports: [
     BrowserModule,
     AppRoutingModule,
-    NgxIndexedDBModule.forRoot(dbConfig),
     FormsModule,
     BrowserAnimationsModule,
     MaterialModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: !isDevMode(),
-      // Register the ServiceWorker as soon as the application is stable
-      // or after 30 seconds (whichever comes first).
       registrationStrategy: 'registerWhenStable:30000'
     })
   ],

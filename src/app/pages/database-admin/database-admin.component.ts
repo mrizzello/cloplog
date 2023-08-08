@@ -8,13 +8,13 @@ import { DatastoreService } from '../../services/datastore.service';
 })
 export class DatabaseAdminComponent { // Updated class name
 
-  clearingDatabase: boolean = false;
-  importingDatabase: boolean = false;
+  clearingMessage: string = '';
+  importingMessage: string = '';
 
   constructor(private dataStore: DatastoreService) { }
 
   exportToCSV() {
-    this.dataStore.getAll().subscribe((logs) => {
+    this.dataStore.getAll().then((logs: any) => {
       if (logs.length > 0) {
         const csvData = this.convertToCSV(logs);
         this.downloadCSVFile(csvData);
@@ -28,15 +28,12 @@ export class DatabaseAdminComponent { // Updated class name
 
   convertToCSV(data: any[]): string {
     const csvRows = [];
-    const headers = ['id','timestamp','datetime'];
+    const headers = ['id', 'timestamp'];
     csvRows.push(headers.join(','));
 
     for (const item of data) {
-      const timestamp = Math.floor(new Date(item.datetime).getTime() / 1000);
       const newData = {
-        ...item,
-        datetime: item.datetime,
-        timestamp: timestamp
+        ...item
       };
       const values = headers.map((header) => newData[header]);
       csvRows.push(values.join(','));
@@ -51,8 +48,9 @@ export class DatabaseAdminComponent { // Updated class name
     const now = new Date();
     let filename = "cloplog-";
     filename += now.getFullYear();
-    filename += ("0" + (now.getMonth()+1)).slice(-2);
+    filename += ("0" + (now.getMonth() + 1)).slice(-2);
     filename += ("0" + now.getDate()).slice(-2);
+    filename += "-";
     filename += ("0" + now.getHours()).slice(-2);
     filename += ("0" + now.getMinutes()).slice(-2);
     filename += ("0" + now.getSeconds()).slice(-2);
@@ -71,19 +69,18 @@ export class DatabaseAdminComponent { // Updated class name
 
   resetIndexedDB() {
     if (confirm('Are you sure you want to reset the IndexedDB? This action cannot be undone.')) {
-      this.clearingDatabase = true;
-      this.dataStore.resetDB().subscribe((response) => {
-        if (response === true) {
-          this.clearingDatabase = false;
-        }else{
-          console.error('Error clearing IndexedDB');
-        }
+      this.clearingMessage = 'Clearing database';
+      this.dataStore.clear().then(() => {
+        this.clearingMessage = 'Database cleared !';
+        setTimeout(()=>{
+          this.clearingMessage = '';
+        }, 1000);
       });
     }
   }
 
   importCSV(event: any) {
-    this.importingDatabase = true;
+    this.importingMessage = 'Importing database';
     const file = event.target.files[0];
     const reader = new FileReader();
 
@@ -91,9 +88,13 @@ export class DatabaseAdminComponent { // Updated class name
       const csvData = event.target?.result as string;
       const logs = this.parseCSV(csvData);
       if (logs.length > 0) {
-        this.dataStore.bulkAdd(logs).subscribe((response) => {
-          this.importingDatabase = false;
-          window.location.reload();
+        this.dataStore.clear().then(() => {
+          this.dataStore.bulkAdd(logs).then(() => {
+            this.importingMessage = 'Database imported !';
+            setTimeout(()=>{
+              this.importingMessage = '';
+            }, 1000);
+          });
         });
       } else {
         console.warn('No data found in the CSV file.');
@@ -113,7 +114,7 @@ export class DatabaseAdminComponent { // Updated class name
       const values = rows[i].split(',');
       const log = {
         id: parseInt(values[0]),
-        datetime: new Date(parseInt(values[1]) * 1000),
+        timestamp: parseInt(values[1]),
       };
       logs.push(log);
     }

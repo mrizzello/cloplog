@@ -6,10 +6,9 @@
 <br />
 <br />
 <button (click)="resetIndexedDB()">Clear database</button>
-<div *ngIf="clearingDatabase">clearing database</div>
+<div *ngIf="clearingMessage">{{clearingMessage}}</div>
 <br />
 <br />
 <br />
 <input type="file" (change)="importCSV($event)">
-<div>Clear database before importing</div>
-<div *ngIf="importingDatabase">importing database</div>
+<div *ngIf="importingMessage">{{importingMessage}}</div>

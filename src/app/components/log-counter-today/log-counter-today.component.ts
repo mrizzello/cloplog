@@ -24,15 +24,8 @@ export class LogCounterTodayComponent implements OnInit {
   }
 
   countTodayLogs() {
-    const today = new Date();
-    today.setHours(0, 0, 0, 0);
-
-    this.dataStore.getAll().subscribe((logs) => {
-      this.todayLogsCount = logs.filter((log:any) => {
-        const logDate = new Date(log.datetime);
-        logDate.setHours(0, 0, 0, 0);
-        return logDate.getTime() === today.getTime();
-      }).length;
+    this.dataStore.countTodayLogs().then((count:number)=>{      
+      this.todayLogsCount = count;
     });
   }
 

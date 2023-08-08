@@ -4,11 +4,11 @@
       <div class="list-item">
         <span class="date">
           <mat-icon class="info-icon">smoking_rooms</mat-icon>
-          {{ formatDate(log.datetime) }}
+          {{ formatDate(log.timestamp) }}
         </span>
         <span class="time">
           <mat-icon class="info-icon">schedule</mat-icon>
-          {{ formatTime(log.datetime) }}
+          {{ formatTime(log.timestamp) }}
         </span>
         <span class="button-row">
           <button mat-icon-button color="primary" (click)="openEditDialog(log)">

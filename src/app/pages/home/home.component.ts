@@ -32,19 +32,14 @@ export class HomeComponent {
 
   Log() {
     this.cssClicked = 'clicked';
-    const currentDateTime = new Date();
-    this.dataStore.add({ datetime: currentDateTime }).subscribe(
-      (key) => {
-        this.udService.updateDisplay();
-        this.logList.fetchLogs();
-        setTimeout(() => {
-          this.cssClicked = '';
-        }, 200)
-      },
-      (error) => {
-        console.error('Error adding entry to IndexedDB: ', error);
-      }
-    );
+    const now = new Date();
+    this.dataStore.add({ timestamp: now }).then((key) => {
+      this.udService.updateDisplay();
+      this.logList.fetchLogs();
+      setTimeout(() => {
+        this.cssClicked = '';
+      }, 200)
+    });
   }
 
 }
