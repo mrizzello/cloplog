@@ -74,6 +74,7 @@ export class DatabaseAdminComponent { // Updated class name
         this.clearingMessage = 'Database cleared !';
         setTimeout(()=>{
           this.clearingMessage = '';
+          window.location.reload();
         }, 1000);
       });
     }

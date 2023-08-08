@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { liveQuery } from 'dexie';
 import { db } from '../db';
+import Dexie from 'dexie';
 
 @Injectable({
   providedIn: 'root'
@@ -47,7 +48,7 @@ export class DatastoreService {
   }
 
   clear(){
-    return db.Logs.clear();
+    return Dexie.delete('cloplog');
   }
 
   bulkAdd(logs: any[]){
