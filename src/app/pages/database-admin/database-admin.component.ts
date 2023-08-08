@@ -1,15 +1,24 @@
 import { Component } from '@angular/core';
 import { DatastoreService } from '../../services/datastore.service';
+import { trigger, transition, style, animate } from '@angular/animations';
 
 @Component({
-  selector: 'app-database-admin', // Updated selector
+  selector: 'app-database-admin',
   templateUrl: './database-admin.component.html',
-  styleUrls: ['./database-admin.component.scss']
+  styleUrls: ['./database-admin.component.scss'],
+  animations: [
+    trigger('fadeIn', [
+      transition(':enter', [
+        style({ opacity: 0 }),
+        animate('300ms ease-in', style({ opacity: 1 }))
+      ])
+    ])
+  ]
 })
-export class DatabaseAdminComponent { // Updated class name
+export class DatabaseAdminComponent {
 
-  clearingMessage: string = '';
-  importingMessage: string = '';
+  clearingInProgress: boolean = false;
+  importInProgress: boolean = false;
 
   constructor(private dataStore: DatastoreService) { }
 
@@ -69,19 +78,17 @@ export class DatabaseAdminComponent { // Updated class name
 
   resetIndexedDB() {
     if (confirm('Are you sure you want to reset the IndexedDB? This action cannot be undone.')) {
-      this.clearingMessage = 'Clearing database';
+      this.clearingInProgress = true;
       this.dataStore.clear().then(() => {
-        this.clearingMessage = 'Database cleared !';
         setTimeout(()=>{
-          this.clearingMessage = '';
-          window.location.reload();
+          this.clearingInProgress = false;
         }, 1000);
       });
     }
   }
 
   importCSV(event: any) {
-    this.importingMessage = 'Importing database';
+    this.importInProgress = true;
     const file = event.target.files[0];
     const reader = new FileReader();
 
@@ -91,9 +98,8 @@ export class DatabaseAdminComponent { // Updated class name
       if (logs.length > 0) {
         this.dataStore.clear().then(() => {
           this.dataStore.bulkAdd(logs).then(() => {
-            this.importingMessage = 'Database imported !';
             setTimeout(()=>{
-              this.importingMessage = '';
+              this.importInProgress = false;
             }, 1000);
           });
         });

@@ -11,7 +11,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatCardModule } from '@angular/material/card';
-
+import { MatDividerModule } from '@angular/material/divider';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 @NgModule({
     exports: [
@@ -26,7 +27,9 @@ import { MatCardModule } from '@angular/material/card';
         MatInputModule,
         MatFormFieldModule,
         MatNativeDateModule,
-        MatCardModule
+        MatCardModule,
+        MatDividerModule,
+        MatProgressBarModule
     ]
 })
 export class MaterialModule { }

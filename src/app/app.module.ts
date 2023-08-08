@@ -16,6 +16,7 @@ import { DatabaseAdminComponent } from './pages/database-admin/database-admin.co
 import { LogCounterTodayComponent } from './components/log-counter-today/log-counter-today.component';
 import { TimeSinceLastComponent } from './components/time-since-last/time-since-last.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
+import { PageListComponent } from './pages/page-list/page-list.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { ServiceWorkerModule } from '@angular/service-worker';
     LogDeleteComponent,
     DatabaseAdminComponent,
     LogCounterTodayComponent,
-    TimeSinceLastComponent
+    TimeSinceLastComponent,
+    PageListComponent
   ],
   imports: [
     BrowserModule,

@@ -24,8 +24,12 @@ export class LogCounterTodayComponent implements OnInit {
   }
 
   countTodayLogs() {
-    this.dataStore.countTodayLogs().then((count:number)=>{      
-      this.todayLogsCount = count;
+    this.dataStore.countAll().then((count) => {
+      if (count > 0) {
+        this.dataStore.countTodayLogs().then((count: number) => {
+          this.todayLogsCount = count;
+        });
+      }
     });
   }
 

@@ -10,7 +10,7 @@ export class IndexedDBService extends Dexie {
 
   constructor() {
     super('cloplog');
-    this.version(0.1).stores({
+    this.version(0.2).stores({
       Logs: '++id,timestamp',
     });
   }

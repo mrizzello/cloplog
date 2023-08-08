@@ -1,25 +1,29 @@
 <div *ngIf="logs.length > 0">
   <mat-list>
-    <mat-list-item *ngFor="let log of logs">
-      <div class="list-item">
-        <span class="date">
-          <mat-icon class="info-icon">smoking_rooms</mat-icon>
-          {{ formatDate(log.timestamp) }}
-        </span>
-        <span class="time">
-          <mat-icon class="info-icon">schedule</mat-icon>
-          {{ formatTime(log.timestamp) }}
-        </span>
-        <span class="button-row">
-          <button mat-icon-button color="primary" (click)="openEditDialog(log)">
-            <mat-icon>edit</mat-icon>
-          </button>
-          <button mat-icon-button color="warn" (click)="openDeleteDialog(log)">
-            <mat-icon>clear</mat-icon>
-          </button>
-        </span>
-      </div>
-    </mat-list-item>
+    <mat-divider></mat-divider>
+    <ng-container *ngFor="let log of logs">
+      <mat-list-item>
+        <div class="list-item">
+          <span class="date">
+            <mat-icon class="info-icon">smoking_rooms</mat-icon>
+            {{ formatDate(log.timestamp) }}
+          </span>
+          <span class="time">
+            <mat-icon class="info-icon">schedule</mat-icon>
+            {{ formatTime(log.timestamp) }}
+          </span>
+          <span class="button-row">
+            <button mat-icon-button color="primary" (click)="openEditDialog(log)">
+              <mat-icon>edit</mat-icon>
+            </button>
+            <button mat-icon-button color="warn" (click)="openDeleteDialog(log)">
+              <mat-icon>clear</mat-icon>
+            </button>
+          </span>
+        </div>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+    </ng-container>
   </mat-list>
 </div>
 

@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { liveQuery } from 'dexie';
 import { db } from '../db';
-import Dexie from 'dexie';
 
 @Injectable({
   providedIn: 'root'
@@ -30,11 +29,15 @@ export class DatastoreService {
     return db.Logs.orderBy('timestamp').reverse().limit(n).toArray();
   }
 
+  countAll(){
+    return db.Logs.count();
+  }
+
   countTodayLogs(){
     const lowerBound = new Date();
     lowerBound.setHours(0, 0, 0);
     const upperBound = new Date();
-    upperBound.setHours(23, 59, 59);    
+    upperBound.setHours(23, 59, 59);
     return db.Logs.where('timestamp')
       .between(this.getUnixTimestamp(lowerBound), this.getUnixTimestamp(upperBound)).count();
   }
@@ -48,7 +51,7 @@ export class DatastoreService {
   }
 
   clear(){
-    return Dexie.delete('cloplog');
+    return db.Logs.clear();
   }
 
   bulkAdd(logs: any[]){

@@ -37,10 +37,18 @@ export class TimeSinceLastComponent implements OnInit {
   }
 
   updateTimeSinceLastLog() {
-    this.dataStore.getLast(1).then((logs:any)=>{      
-      const currentTime = new Date().getTime();            
-      const timeDifference = currentTime - (logs[0].timestamp * 1000);
-      this.timeSinceLastLog = this.formatTimeDifference(timeDifference);
+    this.dataStore.countAll().then((count) => {
+      if (count > 0) {
+        this.dataStore.countTodayLogs().then((count: number) => {
+          this.dataStore.getLast(1).then((logs:any)=>{      
+            const currentTime = new Date().getTime();            
+            const timeDifference = currentTime - (logs[0].timestamp * 1000);
+            this.timeSinceLastLog = this.formatTimeDifference(timeDifference);
+          });
+        });
+      }else{
+        this.timeSinceLastLog = '-';
+      }
     });
   }
 
