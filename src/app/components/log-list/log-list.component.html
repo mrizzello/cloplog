@@ -28,9 +28,15 @@
 </div>
 
 <div *ngIf="logs.length === 0">
-  <mat-list>
-    <div class="list-item">
-      <mat-list-item>Aucun enregistrement n'a été trouvé.</mat-list-item>
-    </div>
-  </mat-list>
+  <mat-card class="empty">
+    <mat-card-header>
+      <mat-card-title>
+        Pas d'enregistrement &hellip;
+      </mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <p>Cliquez sur le logo lorsque vous fumerez la première cigarette.</p>
+      <p>Si vous arrêtez de fumer, c'est encore mieux&nbsp;!</p>
+    </mat-card-content>
+  </mat-card>
 </div>

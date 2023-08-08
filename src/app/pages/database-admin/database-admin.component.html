@@ -1,31 +1,31 @@
 <div class="admin-container" [@fadeIn]>
-    <h3>Settings</h3>
+    <h3>Paramètres</h3>
     <mat-card>
         <mat-card-header>
-            <mat-card-title>Export data to a CSV file</mat-card-title>
+            <mat-card-title>Exporter les données au format CSV</mat-card-title>
         </mat-card-header>
         <mat-card-actions align="end">
-            <button mat-raised-button color="primary" (click)="exportToCSV()">Export to CSV</button>
+            <button mat-raised-button color="primary" (click)="exportToCSV()">Exporter</button>
         </mat-card-actions>
     </mat-card>
 
     <mat-card>
         <mat-card-header>
-            <mat-card-title>Clear all data</mat-card-title>
-            <mat-card-subtitle><i>Export data to a CSV file before clearing.</i></mat-card-subtitle>
+            <mat-card-title>Supprimer toutes les données</mat-card-title>
+            <mat-card-subtitle><i>Exportez vos données avant de tout effacer.</i></mat-card-subtitle>
         </mat-card-header>
         <mat-card-content *ngIf="clearingInProgress">
             <mat-progress-bar mode="indeterminate"></mat-progress-bar>
         </mat-card-content>
         <mat-card-actions align="end">
-            <button mat-raised-button color="warn" (click)="resetIndexedDB()">Clear database</button>
+            <button mat-raised-button color="warn" (click)="resetIndexedDB()">Supprimer</button>
         </mat-card-actions>
     </mat-card>
 
     <mat-card>
         <mat-card-header>
-            <mat-card-title>Import CSV file</mat-card-title>
-            <mat-card-subtitle><i>Current data will be erased.</i></mat-card-subtitle>
+            <mat-card-title>Importer un fichier CSV</mat-card-title>
+            <mat-card-subtitle><i>Les données actuelles seront effacées.</i></mat-card-subtitle>
         </mat-card-header>
         <mat-card-content *ngIf="importInProgress">
             <mat-progress-bar mode="indeterminate"></mat-progress-bar>
