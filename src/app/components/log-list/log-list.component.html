@@ -2,13 +2,23 @@
   <mat-accordion multi>
     <mat-expansion-panel *ngFor="let monthGroup of logs" [expanded]="false" hideToggle>
       <mat-expansion-panel-header class="month">
-        <mat-panel-title>{{ monthGroup.month }}</mat-panel-title>
+        <mat-panel-title>{{ monthGroup.month }}
+          <span class="month-count">
+            <span class="month-count-value">{{monthCount(monthGroup)}}</span>
+            <mat-icon class="info-icon">smoking_rooms</mat-icon>
+          </span>
+        </mat-panel-title>
       </mat-expansion-panel-header>
 
       <div *ngFor="let day of monthGroup.days">
         <mat-expansion-panel [expanded]="false" class="days" hideToggle>
           <mat-expansion-panel-header class="day">
-            <mat-panel-title>{{ day.date }}</mat-panel-title>
+            <mat-panel-title>{{ day.date }}
+              <span class="day-count">
+                <span class="day-count-value">{{day.logs.length}}</span>
+                <mat-icon class="info-icon">smoking_rooms</mat-icon>
+              </span>
+            </mat-panel-title>
           </mat-expansion-panel-header>
 
           <mat-list>

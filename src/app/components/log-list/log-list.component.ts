@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { DatastoreService } from '../../services/datastore.service';
 import { DateFormatService } from '../../services/date-format.service';
+import { UpdateDisplayService } from '../../services/update-display.service';
 
 @Component({
   selector: 'app-log-list',
@@ -13,11 +14,15 @@ export class LogListComponent implements OnInit {
 
   constructor(
     private dataStore: DatastoreService,
-    private dateFormat: DateFormatService
+    private dateFormat: DateFormatService,
+    private udService: UpdateDisplayService
   ) { }
 
   ngOnInit() {
     this.fetchLogs();
+    this.udService.updateDisplay$.subscribe(() => {
+      this.fetchLogs();
+    });
   }
 
   fetchLogs() {
@@ -57,11 +62,11 @@ export class LogListComponent implements OnInit {
     });
   }
 
-  onDeleted($event: boolean) {
-    this.fetchLogs();
+  monthCount(month: any):number {
+    let n = 0;
+    month.days.forEach((day:any)=>{
+      n+= day.logs.length;
+    });
+    return n;
   }
-  onUpdated($event: boolean) {
-    this.fetchLogs();
-  }
-
 }
