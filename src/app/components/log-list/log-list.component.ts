@@ -1,9 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
-import { LogEditComponent } from '../../components/log-edit/log-edit.component';
-import { LogDeleteComponent } from '../../components/log-delete/log-delete.component';
 import { DatastoreService } from '../../services/datastore.service';
-import { UpdateDisplayService } from '../../services/update-display.service';
 import { DateFormatService } from '../../services/date-format.service';
 
 @Component({
@@ -13,67 +9,59 @@ import { DateFormatService } from '../../services/date-format.service';
 })
 export class LogListComponent implements OnInit {
 
-  @Input() limit!: number;
-
   logs: any[] = [];
 
   constructor(
     private dataStore: DatastoreService,
-    private dialog: MatDialog,
-    private udService: UpdateDisplayService,
     private dateFormat: DateFormatService
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.fetchLogs();
   }
 
   fetchLogs() {
-    if(this.limit !== undefined){
-      this.dataStore.getLast(this.limit).then((logs:any)=>{      
-        this.logs = logs;
+    this.dataStore.getAll().then((logs: any[]) => {
+      const groupedLogs: {
+        month: string,
+        days: {
+          date: string,
+          logs: any[]
+        }[]
+      }[] = [];
+
+      logs.forEach((log: any) => {
+        let logDate = this.dateFormat.formatDate(log.timestamp);
+        let logMonth = this.dateFormat.formatYearMonth(log.timestamp); // Format month only
+
+        if (new Date(log.timestamp).getHours() >= 0 && new Date(log.timestamp).getHours() < 4) {
+          logDate = this.dateFormat.formatDate(log.timestamp - 24 * 60 * 60);
+        }
+
+        let existingMonthGroup = groupedLogs.find(group => group.month === logMonth);
+        if (!existingMonthGroup) {
+          existingMonthGroup = { month: logMonth, days: [] };
+          groupedLogs.push(existingMonthGroup);
+        }
+
+        let existingDayGroup = existingMonthGroup.days.find(day => day.date === logDate);
+        if (!existingDayGroup) {
+          existingDayGroup = { date: logDate, logs: [] };
+          existingMonthGroup.days.push(existingDayGroup);
+        }
+
+        existingDayGroup.logs.push(log);
       });
-    }else{
-      this.dataStore.getAll().then((logs:any)=>{      
-        this.logs = logs;
-      });
-    }
-    this.udService.updateDisplay();
-  }
 
-  openEditDialog(log: any) {
-    const dialogRef = this.dialog.open(LogEditComponent, {
-      data: log
-    });
-  
-    dialogRef.afterClosed().subscribe(result => {
-      if (result) {
-        this.fetchLogs();
-      }
+      this.logs = groupedLogs;
     });
   }
 
-  openDeleteDialog(log: any) {
-    const dialogRef = this.dialog.open(LogDeleteComponent, {
-      data: log
-    });
-  
-    dialogRef.afterClosed().subscribe(result => {
-      if (result) {
-        this.fetchLogs();
-      }
-    });
+  onDeleted($event: boolean) {
+    this.fetchLogs();
+  }
+  onUpdated($event: boolean) {
+    this.fetchLogs();
   }
 
-  formatDate(timestamp: number): string {
-    if(this.limit !== undefined){
-      return this.dateFormat.formatDateContext(timestamp);
-    }
-    return this.dateFormat.formatDate(timestamp);
-  }
-
-  formatTime(timestamp: number): string {
-    return this.dateFormat.formatTime(timestamp);
-  }
-  
 }

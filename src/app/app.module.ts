@@ -10,6 +10,8 @@ import { LOCALE_ID, isDevMode } from '@angular/core';
 
 import { HomeComponent } from './pages/home/home.component';
 import { LogListComponent } from './components/log-list/log-list.component';
+import { LogItemComponent } from './components/log-item/log-item.component';
+import { NoLogsMessageComponent } from './components/no-logs-message/no-logs-message.component';
 import { LogEditComponent } from './components/log-edit/log-edit.component';
 import { LogDeleteComponent } from './components/log-delete/log-delete.component';
 import { DatabaseAdminComponent } from './pages/database-admin/database-admin.component';
@@ -17,18 +19,22 @@ import { LogCounterTodayComponent } from './components/log-counter-today/log-cou
 import { TimeSinceLastComponent } from './components/time-since-last/time-since-last.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { PageListComponent } from './pages/page-list/page-list.component';
+import { LogListLastComponent } from './components/log-list-last/log-list-last.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     LogListComponent,
+    LogItemComponent,
+    NoLogsMessageComponent,
     LogEditComponent,
     LogDeleteComponent,
     DatabaseAdminComponent,
     LogCounterTodayComponent,
     TimeSinceLastComponent,
-    PageListComponent
+    PageListComponent,
+    LogListLastComponent
   ],
   imports: [
     BrowserModule,

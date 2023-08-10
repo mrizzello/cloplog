@@ -1,0 +1,20 @@
+<mat-list-item>
+    <div class="list-item">
+        <span class="date">
+            <mat-icon class="info-icon">smoking_rooms</mat-icon>
+            {{ formatDate(log.timestamp) }}
+        </span>
+        <span class="time">
+            <mat-icon class="info-icon">schedule</mat-icon>
+            {{ formatTime(log.timestamp) }}
+        </span>
+        <span class="button-row">
+            <button mat-icon-button color="primary" (click)="openEditDialog(log)">
+                <mat-icon>edit</mat-icon>
+            </button>
+            <button mat-icon-button color="warn" (click)="openDeleteDialog(log)">
+                <mat-icon>clear</mat-icon>
+            </button>
+        </span>
+    </div>
+</mat-list-item>

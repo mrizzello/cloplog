@@ -1,42 +1,27 @@
 <div *ngIf="logs.length > 0">
-  <mat-list>
-    <mat-divider></mat-divider>
-    <ng-container *ngFor="let log of logs">
-      <mat-list-item>
-        <div class="list-item">
-          <span class="date">
-            <mat-icon class="info-icon">smoking_rooms</mat-icon>
-            {{ formatDate(log.timestamp) }}
-          </span>
-          <span class="time">
-            <mat-icon class="info-icon">schedule</mat-icon>
-            {{ formatTime(log.timestamp) }}
-          </span>
-          <span class="button-row">
-            <button mat-icon-button color="primary" (click)="openEditDialog(log)">
-              <mat-icon>edit</mat-icon>
-            </button>
-            <button mat-icon-button color="warn" (click)="openDeleteDialog(log)">
-              <mat-icon>clear</mat-icon>
-            </button>
-          </span>
-        </div>
-      </mat-list-item>
-      <mat-divider></mat-divider>
-    </ng-container>
-  </mat-list>
-</div>
+  <mat-accordion multi>
+    <mat-expansion-panel *ngFor="let monthGroup of logs" [expanded]="false" hideToggle>
+      <mat-expansion-panel-header class="month">
+        <mat-panel-title>{{ monthGroup.month }}</mat-panel-title>
+      </mat-expansion-panel-header>
 
+      <div *ngFor="let day of monthGroup.days">
+        <mat-expansion-panel [expanded]="false" class="days" hideToggle>
+          <mat-expansion-panel-header class="day">
+            <mat-panel-title>{{ day.date }}</mat-panel-title>
+          </mat-expansion-panel-header>
+
+          <mat-list>
+            <ng-container *ngFor="let log of day.logs; let lastItem = last;">
+              <app-log-item [log]="log"></app-log-item>
+              <mat-divider *ngIf="!lastItem"></mat-divider>
+            </ng-container>
+          </mat-list>
+        </mat-expansion-panel>
+      </div>
+    </mat-expansion-panel>
+  </mat-accordion>
+</div>
 <div *ngIf="logs.length === 0">
-  <mat-card class="empty">
-    <mat-card-header>
-      <mat-card-title>
-        Pas d'enregistrement &hellip;
-      </mat-card-title>
-    </mat-card-header>
-    <mat-card-content>
-      <p>Cliquez sur le logo lorsque vous fumerez la première cigarette.</p>
-      <p>Si vous arrêtez de fumer, c'est encore mieux&nbsp;!</p>
-    </mat-card-content>
-  </mat-card>
+  <app-no-logs-message></app-no-logs-message>
 </div>

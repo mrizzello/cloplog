@@ -1,0 +1,14 @@
+<div *ngIf="logs.length > 0">
+    <mat-list>
+        <mat-divider></mat-divider>
+        <mat-list-item class="title"><span class="text">Derniers logs</span></mat-list-item>
+        <mat-divider></mat-divider>
+        <ng-container *ngFor="let log of logs">
+            <app-log-item [log]="log" [context]="true"></app-log-item>
+            <mat-divider></mat-divider>
+        </ng-container>
+    </mat-list>
+</div>
+<div *ngIf="logs.length === 0">
+    <app-no-logs-message></app-no-logs-message>
+</div>

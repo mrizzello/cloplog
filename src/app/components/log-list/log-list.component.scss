@@ -1,27 +1,19 @@
-.list-item {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.mat-accordion .mat-expansion-panel {
+    border-radius: inherit;
+}
 
-    .info-icon {
-        display: inline;
-        font-size: 1.2rem;
-        color: #999;
-        float: left;
-        margin-top: 0.15rem;
-    }
-
-    .date {
-        width: 50%;
-        .info-icon{
-            margin-right: 0.67rem;
-        }
-    }
-
-    .time{
-        width: 25%;
+.mat-accordion .mat-expansion-panel-header.month,
+.mat-expansion-panel:not(.mat-expanded)>.mat-expansion-panel-header:not([aria-disabled=true]):hover {
+    background-color: #00695C;
+    .mat-expansion-panel-header-title{
+        color: #ffffff;
     }
 }
-.empty{
-    margin: 2rem;
+
+.mat-accordion .mat-expansion-panel-header.day,
+.mat-expansion-panel:not(.mat-expanded)>.mat-expansion-panel-header.day:not([aria-disabled=true]):hover {
+    background-color: #B2DFDB;
+    .mat-expansion-panel-header-title{
+        color: #000000;
+    }
 }

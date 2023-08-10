@@ -13,6 +13,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatCardModule } from '@angular/material/card';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatExpansionModule } from '@angular/material/expansion';
 
 @NgModule({
     exports: [
@@ -29,7 +30,8 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
         MatNativeDateModule,
         MatCardModule,
         MatDividerModule,
-        MatProgressBarModule
+        MatProgressBarModule,
+        MatExpansionModule
     ]
 })
 export class MaterialModule { }

@@ -35,7 +35,6 @@ export class HomeComponent {
     const now = new Date();
     this.dataStore.add({ timestamp: now }).then((key) => {
       this.udService.updateDisplay();
-      this.logList.fetchLogs();
       setTimeout(() => {
         this.cssClicked = '';
       }, 200)
