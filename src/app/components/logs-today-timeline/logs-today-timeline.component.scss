@@ -1,0 +1,14 @@
+.timeline-container {
+    padding: 0 0 1rem;
+    background-color: #E0F2F1;
+    background-image: linear-gradient(#fafafa, #E0F2F1);
+
+    #timeline {
+        margin: 0;
+        padding: 0.5rem;
+
+        .svg {
+            width: 100%;
+        }
+    }
+}

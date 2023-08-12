@@ -42,6 +42,16 @@ export class DatastoreService {
       .between(this.getUnixTimestamp(lowerBound), this.getUnixTimestamp(upperBound)).count();
   }
 
+  getTodayLogs(){
+    const lowerBound = new Date();
+    lowerBound.setHours(0, 0, 0);
+    const upperBound = new Date();
+    upperBound.setDate(upperBound.getDate() + 1);
+    upperBound.setHours(0, 0, 0);
+    return db.Logs.where('timestamp')
+      .between(this.getUnixTimestamp(lowerBound), this.getUnixTimestamp(upperBound)).toArray();
+  }
+
   update(entry:any) {
     return db.Logs.update(entry.id, entry);
   }

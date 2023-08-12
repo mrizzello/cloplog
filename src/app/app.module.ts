@@ -20,6 +20,7 @@ import { TimeSinceLastComponent } from './components/time-since-last/time-since-
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { PageListComponent } from './pages/page-list/page-list.component';
 import { LogListLastComponent } from './components/log-list-last/log-list-last.component';
+import { LogsTodayTimelineComponent } from './components/logs-today-timeline/logs-today-timeline.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { LogListLastComponent } from './components/log-list-last/log-list-last.c
     LogCounterTodayComponent,
     TimeSinceLastComponent,
     PageListComponent,
-    LogListLastComponent
+    LogListLastComponent,
+    LogsTodayTimelineComponent
   ],
   imports: [
     BrowserModule,

@@ -55,7 +55,10 @@ export class TimeSinceLastComponent implements OnInit {
   formatTimeDifference(timeDifference: number): string {
     const minutes = Math.floor(timeDifference / 60000);
 
-    if (minutes < 60) {
+    if (minutes == 0) {
+      return 'à l\'instant';
+    }
+    else if (minutes < 60) {
       return `${minutes} minute${minutes === 1 ? '' : 's'}`;
     } else {
       const hours = Math.floor(minutes / 60);
