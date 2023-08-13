@@ -34,7 +34,7 @@ export class HomeComponent {
     this.doClick();
     setInterval(() => {
       this.doClick();
-    }, 5000);
+    }, 6000);
   }
 
   doClick() {
