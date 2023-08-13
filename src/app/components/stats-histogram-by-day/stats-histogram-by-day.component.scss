@@ -1,0 +1,19 @@
+.chart-container {
+    padding: 0 0 1rem;
+
+    #chart {
+        margin: 0;
+
+        .svg {
+            width: 100%;
+        }
+    }
+
+    .caption {
+        text-align: center;
+        font-size: 75%;
+        font-style: italic;
+        color: #666;
+        margin: 0.5rem 0;
+    }
+}

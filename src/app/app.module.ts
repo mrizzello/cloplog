@@ -9,6 +9,7 @@ import { MaterialModule } from './material.module';
 import { LOCALE_ID, isDevMode } from '@angular/core';
 
 import { HomeComponent } from './pages/home/home.component';
+import { StatsComponent } from './pages/stats/stats.component';
 import { LogListComponent } from './components/log-list/log-list.component';
 import { LogItemComponent } from './components/log-item/log-item.component';
 import { NoLogsMessageComponent } from './components/no-logs-message/no-logs-message.component';
@@ -21,11 +22,13 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { PageListComponent } from './pages/page-list/page-list.component';
 import { LogListLastComponent } from './components/log-list-last/log-list-last.component';
 import { LogsTodayTimelineComponent } from './components/logs-today-timeline/logs-today-timeline.component';
+import { StatsHistogramByDayComponent } from './components/stats-histogram-by-day/stats-histogram-by-day.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
+    StatsComponent,
     LogListComponent,
     LogItemComponent,
     NoLogsMessageComponent,
@@ -36,7 +39,8 @@ import { LogsTodayTimelineComponent } from './components/logs-today-timeline/log
     TimeSinceLastComponent,
     PageListComponent,
     LogListLastComponent,
-    LogsTodayTimelineComponent
+    LogsTodayTimelineComponent,
+    StatsHistogramByDayComponent
   ],
   imports: [
     BrowserModule,

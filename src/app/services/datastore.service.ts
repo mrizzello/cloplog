@@ -52,6 +52,15 @@ export class DatastoreService {
       .between(this.getUnixTimestamp(lowerBound), this.getUnixTimestamp(upperBound)).toArray();
   }
 
+  getLastDays(n: number = 1){
+    const currentDate = new Date();
+    const secondsInDay = 86400;
+    const timeAgo = (n-1) * secondsInDay;
+    const dateAgo = new Date(currentDate.getTime() - timeAgo * 1000);    
+    const lowerBound = Math.floor(dateAgo.getTime() / 1000);
+    return db.Logs.where('timestamp').above(lowerBound).reverse().toArray();
+  }
+
   update(entry:any) {
     return db.Logs.update(entry.id, entry);
   }
