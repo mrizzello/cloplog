@@ -30,6 +30,20 @@ export class HomeComponent {
   ) {
   }
 
+  onDone($event: any) {
+    this.doClick();
+    setInterval(() => {
+      this.doClick();
+    }, 5000);
+  }
+
+  doClick() {
+    this.cssClicked = 'clicked';
+    setTimeout(() => {
+      this.cssClicked = '';
+    }, 200)
+  }
+
   Log() {
     this.cssClicked = 'clicked';
     const now = new Date();

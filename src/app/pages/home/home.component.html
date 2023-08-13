@@ -1,4 +1,4 @@
-<mat-grid-list cols="2" rowHeight="2:1" gutterSize="0.2rem" [@fadeIn]>
+<mat-grid-list cols="2" rowHeight="2:1" gutterSize="0.2rem" [@fadeIn] (@fadeIn.done)="onDone($event)">
     <mat-grid-tile colspan="2" rowspan="2">
         <div class="log-button-container {{cssClicked}}">
             <img src = "assets/log-button.svg" (click)="Log()" />

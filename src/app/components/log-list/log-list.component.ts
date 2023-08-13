@@ -11,6 +11,8 @@ import { UpdateDisplayService } from '../../services/update-display.service';
 export class LogListComponent implements OnInit {
 
   logs: any[] = [];
+  showComponent: boolean = false;
+  showEmpty: boolean = false;
 
   constructor(
     private dataStore: DatastoreService,
@@ -59,6 +61,8 @@ export class LogListComponent implements OnInit {
       });
 
       this.logs = groupedLogs;
+      this.showComponent = true;
+      this.showEmpty = this.logs.length === 0;
     });
   }
 

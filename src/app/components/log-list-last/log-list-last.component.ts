@@ -11,6 +11,8 @@ export class LogListLastComponent {
 
   @Input() limit!: number;
   logs: any[] = [];
+  showComponent: boolean = false;
+  showEmpty: boolean = false;
 
   constructor(
     private dataStore: DatastoreService,
@@ -25,8 +27,10 @@ export class LogListLastComponent {
   }
 
   fetchLogs() {
-    this.dataStore.getLast(this.limit).then((logs:any)=>{      
+    this.dataStore.getLast(this.limit).then((logs:any)=>{
       this.logs = logs;
+      this.showComponent = true;
+      this.showEmpty = this.logs.length === 0;
     });
   }
 

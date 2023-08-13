@@ -1,4 +1,4 @@
-<div *ngIf="logs.length > 0">
+<div *ngIf="showComponent">
   <mat-accordion multi>
     <mat-expansion-panel *ngFor="let monthGroup of logs" [expanded]="false" hideToggle>
       <mat-expansion-panel-header class="month">
@@ -32,6 +32,6 @@
     </mat-expansion-panel>
   </mat-accordion>
 </div>
-<div *ngIf="logs.length === 0">
+<div *ngIf="showEmpty">
   <app-no-logs-message></app-no-logs-message>
 </div>
