@@ -21,6 +21,7 @@ export class HomeComponent {
 
   lastLogsLimit: number = 4;
   cssClicked: string = '';
+  cssShake: string = '';
 
   @ViewChild(LogListComponent) private logList!: LogListComponent;
 
@@ -31,10 +32,17 @@ export class HomeComponent {
   }
 
   onDone($event: any) {
-    this.doClick();
+    this.shake();
     setInterval(() => {
-      this.doClick();
-    }, 6000);
+      this.shake();
+    }, 6000)
+  }
+
+  shake(){
+    this.cssShake = 'shake';
+    setTimeout(() => {
+      this.cssShake = '';
+    }, 200)
   }
 
   doClick() {
