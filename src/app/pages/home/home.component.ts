@@ -32,10 +32,9 @@ export class HomeComponent {
   }
 
   onDone($event: any) {
-    this.shake();
     setInterval(() => {
       this.shake();
-    }, 6000)
+    }, 7000)
   }
 
   shake(){

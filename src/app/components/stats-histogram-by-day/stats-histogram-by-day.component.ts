@@ -96,19 +96,34 @@ export class StatsHistogramByDayComponent {
       .data(this.logs)
       .join("rect")
       .attr("x", (d: any) => { return this.xScale(this.createDateFromDateString(d.date)) - 0.5 * bandWidth; })
-      .attr("y", (d: any) => { return this.yScale(d.logs.length); })
-      .attr("height", (d: any) => { return this.yScale(0) - this.yScale(d.logs.length); })
+      .attr("y", (d: any) => { return this.yScale(0); })
+      .attr("height", (d: any) => { return 0; })
       .attr("width", bandWidth)
       .attr("fill", "#009688");
+
+    this.svg.selectAll("rect")
+      .transition()
+      .duration(200)
+      .attr("y", (d: any) => { return this.yScale(d.logs.length); })
+      .attr("height", (d: any) => { return this.yScale(0) - this.yScale(d.logs.length); })
+      .delay((d: any, i: number) => { return ((this.logs.length - i) * 50); })
 
     this.svg.selectAll("values")
       .data(this.logs)
       .enter().append("text")
       .attr("x", (d: any) => { return this.xScale(this.createDateFromDateString(d.date)); })
-      .attr("y", (d: any) => { return this.yScale(d.logs.length+1); })
+      .attr("y", (d: any) => { return this.yScale(d.logs.length + 1); })
+      .attr("class", 'values')
       .attr("text-anchor", "middle")
       .attr("font-size", "0.75rem")
-      .text((d:any) => { return d.logs.length; });
+      .attr("opacity", 0)
+      .text((d: any) => { return d.logs.length; });
+
+    this.svg.selectAll(".values")
+      .transition()
+      .duration(1000)
+      .attr("opacity", (d: any) => { return 100; })
+      .delay((d: any, i: number) => { return ((this.logs.length - i) * 75); })
   }
 
   createDateFromDateString(dateString: string) {
