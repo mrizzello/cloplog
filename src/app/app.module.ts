@@ -23,6 +23,7 @@ import { PageListComponent } from './pages/page-list/page-list.component';
 import { LogListLastComponent } from './components/log-list-last/log-list-last.component';
 import { LogsTodayTimelineComponent } from './components/logs-today-timeline/logs-today-timeline.component';
 import { StatsHistogramByDayComponent } from './components/stats-histogram-by-day/stats-histogram-by-day.component';
+import { StatsGenericComponent } from './components/stats-generic/stats-generic.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { StatsHistogramByDayComponent } from './components/stats-histogram-by-da
     PageListComponent,
     LogListLastComponent,
     LogsTodayTimelineComponent,
-    StatsHistogramByDayComponent
+    StatsHistogramByDayComponent,
+    StatsGenericComponent
   ],
   imports: [
     BrowserModule,

@@ -48,4 +48,13 @@ export class DateFormatService {
     const year = date.getFullYear().toString();
     return `${month}.${year}`;
   }
+
+  formatHoursMinutes(timeInMinutes: number): string {
+    const hours = Math.floor(timeInMinutes / 60);
+    const minutes = timeInMinutes % 60;
+    if (hours === 0) {
+      return `${minutes}min`;
+    }
+    return `${hours}h${minutes}min`;
+  }
 }

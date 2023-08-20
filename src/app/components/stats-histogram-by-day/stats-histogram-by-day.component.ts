@@ -1,5 +1,4 @@
-import { Component } from '@angular/core';
-import { DatastoreService } from '../../services/datastore.service';
+import { Component, Input } from '@angular/core';
 import { DateFormatService } from '../../services/date-format.service';
 
 import * as d3 from 'd3';
@@ -11,7 +10,7 @@ import * as d3 from 'd3';
 })
 export class StatsHistogramByDayComponent {
 
-  logs: any[] = [];
+  @Input() logs!: any;
   svg: any;
   width = 420;
   height = 160;
@@ -20,29 +19,22 @@ export class StatsHistogramByDayComponent {
   yScale!: d3.ScaleLinear<number, number, never>;
 
   constructor(
-    private dataStore: DatastoreService,
     private dateFormat: DateFormatService
   ) { }
 
-  ngOnInit() {
-    this.fetchLogs();
-  }
-
-  fetchLogs() {
-    this.dataStore.getLastDays(14).then((logs: any[]) => {
-      const groupedLogs: any[] = [];
-      logs.forEach((log: any) => {
-        const logDate = this.dateFormat.formatDate(log.timestamp);
-        const existingGroup = groupedLogs.find(group => group.date === logDate);
-        if (existingGroup) {
-          existingGroup.logs.push(log);
-        } else {
-          groupedLogs.push({ date: logDate, logs: [log] });
-        }
-      });
-      this.logs = groupedLogs;
-      this.createSvg();
+  ngOnInit() {    
+    const groupedLogs: any[] = [];
+    this.logs.forEach((log: any) => {
+      const logDate = this.dateFormat.formatDate(log.timestamp);
+      const existingGroup = groupedLogs.find(group => group.date === logDate);      
+      if (existingGroup) {
+        existingGroup.logs.push(log);
+      } else {
+        groupedLogs.push({ date: logDate, logs: [log] });
+      }
     });
+    this.logs = groupedLogs;
+    this.createSvg();
   }
 
   createSvg(): void {
@@ -73,15 +65,18 @@ export class StatsHistogramByDayComponent {
       .call(xAxis);
 
     const { min, max } = this.logs.reduce(
-      (result, day) => ({
+      (result:any, day:any) => ({
         min: Math.min(result.min, day.logs.length),
         max: Math.max(result.max, day.logs.length)
       }),
       { min: 1000, max: 0 }
     );
-
+    
     this.yScale = d3.scaleLinear()
-      .domain([0, d3.max(this.logs, (d) => d.logs.length)])
+      .domain([
+        0,
+        d3.max(this.logs, (d:any) =>{ return d.logs.length }) as unknown as number
+      ])
       .range([this.height - this.margin.bottom, this.margin.top]);
 
     const yAxis = d3.axisLeft(this.yScale)

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { trigger, transition, style, animate } from '@angular/animations';
+import { DatastoreService } from '../../services/datastore.service';
 
 @Component({
   selector: 'app-stats',
@@ -16,4 +17,15 @@ import { trigger, transition, style, animate } from '@angular/animations';
 })
 export class StatsComponent {
 
+  logs: any[] = [];
+
+  constructor(
+    private dataStore: DatastoreService
+  ) { }
+
+  ngOnInit() {
+    this.dataStore.getLastDays(14).then((logs: any[]) => {
+      this.logs = logs;
+    });
+  }
 }
