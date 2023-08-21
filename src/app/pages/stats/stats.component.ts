@@ -24,7 +24,7 @@ export class StatsComponent {
   ) { }
 
   ngOnInit() {
-    this.dataStore.getLastDays(14).then((logs: any[]) => {
+    this.dataStore.getAll().then((logs: any[]) => {
       this.logs = logs;
     });
   }

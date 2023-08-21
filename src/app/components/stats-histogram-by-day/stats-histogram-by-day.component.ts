@@ -17,20 +17,27 @@ export class StatsHistogramByDayComponent {
   margin = ({ top: 20, right: 20, bottom: 20, left: 20 })
   xScale!: d3.ScaleTime<number, number, never>;
   yScale!: d3.ScaleLinear<number, number, never>;
+  dayLimit: number = 14;
 
   constructor(
     private dateFormat: DateFormatService
   ) { }
 
-  ngOnInit() {    
+  ngOnInit() {
     const groupedLogs: any[] = [];
+    const limitDate = new Date();
+    limitDate.setDate(limitDate.getDate() - this.dayLimit);
+    const limitTs = Math.floor(limitDate.getTime() / 1000);
+
     this.logs.forEach((log: any) => {
-      const logDate = this.dateFormat.formatDate(log.timestamp);
-      const existingGroup = groupedLogs.find(group => group.date === logDate);      
-      if (existingGroup) {
-        existingGroup.logs.push(log);
-      } else {
-        groupedLogs.push({ date: logDate, logs: [log] });
+      if (limitTs < log.timestamp) {
+        const logDate = this.dateFormat.formatDate(log.timestamp);
+        const existingGroup = groupedLogs.find(group => group.date === logDate);
+        if (existingGroup) {
+          existingGroup.logs.push(log);
+        } else {
+          groupedLogs.push({ date: logDate, logs: [log] });
+        }
       }
     });
     this.logs = groupedLogs;
@@ -65,17 +72,17 @@ export class StatsHistogramByDayComponent {
       .call(xAxis);
 
     const { min, max } = this.logs.reduce(
-      (result:any, day:any) => ({
+      (result: any, day: any) => ({
         min: Math.min(result.min, day.logs.length),
         max: Math.max(result.max, day.logs.length)
       }),
       { min: 1000, max: 0 }
     );
-    
+
     this.yScale = d3.scaleLinear()
       .domain([
         0,
-        d3.max(this.logs, (d:any) =>{ return d.logs.length }) as unknown as number
+        d3.max(this.logs, (d: any) => { return d.logs.length }) as unknown as number
       ])
       .range([this.height - this.margin.bottom, this.margin.top]);
 

@@ -1,16 +1,19 @@
-<mat-grid-list cols="2" rowHeight="2:1" gutterSize="0.2rem" [@fadeIn] (@fadeIn.done)="onDone($event)">
-    <mat-grid-tile colspan="2" rowspan="2">
+<mat-grid-list cols="4" rowHeight="2:1" gutterSize="1rem" [@fadeIn] (@fadeIn.done)="onDone($event)">
+    <mat-grid-tile colspan="2" rowspan="4">
+        <app-log-counter-today></app-log-counter-today>
+    </mat-grid-tile>
+    <mat-grid-tile colspan="2" rowspan="4">
         <div class="log-button-container {{cssClicked}} {{cssShake}}">
             <div class="log-button">
                 <img src = "assets/log-button.svg" (click)="Log()" />
             </div>
         </div>
     </mat-grid-tile>
-    <mat-grid-tile colspan="1" rowspan="1">
-        <app-log-counter-today></app-log-counter-today>
-    </mat-grid-tile>
-    <mat-grid-tile colspan="1" rowspan="1">
+    <mat-grid-tile colspan="2" rowspan="2">
         <app-time-since-last></app-time-since-last>
+    </mat-grid-tile>
+    <mat-grid-tile colspan="2" rowspan="2">
+        <app-log-next></app-log-next>
     </mat-grid-tile>
 </mat-grid-list>
 <app-logs-today-timeline></app-logs-today-timeline>

@@ -4,9 +4,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #E0F2F1;
     transition: background-color 0.3s ease;
-    border-bottom: 1px solid #009688;
     position: relative;
 
     .log-button {
@@ -14,19 +12,19 @@
         text-align: center;
 
         img {
-            width: 33%;
+            width: 67%;
             margin: 0 auto;
             transition: width 0.1s ease;
         }
     }
 
     &.clicked {
-        background-color: #B3E0DB;
+        background-image: radial-gradient(circle, #B3E0DB 25%, #fafafa 75%);
         transition: background-color 0.2s;
 
         .log-button {
             img {
-                width: 30%;
+                width: 60%;
                 transition: width 0.1s;
             }
         }

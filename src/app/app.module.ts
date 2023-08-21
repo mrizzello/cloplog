@@ -24,6 +24,7 @@ import { LogListLastComponent } from './components/log-list-last/log-list-last.c
 import { LogsTodayTimelineComponent } from './components/logs-today-timeline/logs-today-timeline.component';
 import { StatsHistogramByDayComponent } from './components/stats-histogram-by-day/stats-histogram-by-day.component';
 import { StatsGenericComponent } from './components/stats-generic/stats-generic.component';
+import { LogNextComponent } from './components/log-next/log-next.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { StatsGenericComponent } from './components/stats-generic/stats-generic.
     DatabaseAdminComponent,
     LogCounterTodayComponent,
     TimeSinceLastComponent,
+    LogNextComponent,
     PageListComponent,
     LogListLastComponent,
     LogsTodayTimelineComponent,

@@ -1,0 +1,14 @@
+.next-log {
+    text-align: center;
+    color: #f44336;
+
+    .time {
+        font-weight: bold;
+        font-size: 200%;
+        line-height: 120%;
+        margin-top: 0.33rem;
+    }
+    &.go{
+        color: #009688;
+    }
+}
