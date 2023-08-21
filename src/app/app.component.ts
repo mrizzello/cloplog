@@ -16,8 +16,21 @@ export class AppComponent {
     private router: Router
   ) {
   }
-  
-  navigateAndCloseNav(path:string): void {
+
+  ngOnInit(): void {
+    this.lockScreenOrientation();
+  }
+
+  lockScreenOrientation() {
+    if (window.screen.orientation) {
+      window.screen.orientation.lock('portrait').then(
+        success => {return},
+        failure => {return}
+      );
+    }
+  }
+
+  navigateAndCloseNav(path: string): void {
     this.router.navigate([path]);
     this.drawer.close();
   }
