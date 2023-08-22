@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1692648994313,
+  "timestamp": 1692686889162,
   "index": "/cloplog/index.html",
   "assetGroups": [
     {
@@ -13,7 +13,7 @@
       "urls": [
         "/cloplog/favicon.ico",
         "/cloplog/index.html",
-        "/cloplog/main.3f1f4ae39f993f11.js",
+        "/cloplog/main.eb648dbaee48270a.js",
         "/cloplog/manifest.webmanifest",
         "/cloplog/polyfills.2fad8a5f3894e24f.js",
         "/cloplog/runtime.bee20c8ad29e9fad.js",
@@ -54,8 +54,8 @@
     "/cloplog/assets/icons/icon-96x96.png": "5789b2bb77d3fe74aa5a8a02d760346496c3745b",
     "/cloplog/assets/log-button.svg": "ef262f89237f86fff2ffccb7edc233389e0beb7d",
     "/cloplog/favicon.ico": "6cb4902beebecc9999fb17967d03c5560b782ecc",
-    "/cloplog/index.html": "2c0922d94e416366d1a6bad56d62c4f7ab56e7b4",
-    "/cloplog/main.3f1f4ae39f993f11.js": "4943feeb6baf3acd691fd465a4fb81ddd5cce1fd",
+    "/cloplog/index.html": "8a37b7ced727bbc2225096f719b15c2f175de10e",
+    "/cloplog/main.eb648dbaee48270a.js": "9618790a044b158ef909bd4017d6a8d209b490aa",
     "/cloplog/manifest.webmanifest": "ab308555ced22c55560c84708fefa360862700b3",
     "/cloplog/polyfills.2fad8a5f3894e24f.js": "a1fb557837b48baca97fd8a422cf4d35548487d5",
     "/cloplog/runtime.bee20c8ad29e9fad.js": "53c74a02efd7813d8f54f89b6695c4c0d0476a55",
