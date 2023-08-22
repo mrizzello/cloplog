@@ -10,8 +10,8 @@ import { UpdateDisplayService } from '../../services/update-display.service';
 export class TimeSinceLastComponent implements OnInit {
 
   timeSinceLastLog: string = '';
-
   private intervalId: any;
+  loading: boolean = true;
 
   constructor(
     private dataStore: DatastoreService,
@@ -27,8 +27,10 @@ export class TimeSinceLastComponent implements OnInit {
 
   initialize(){
     this.updateTimeSinceLastLog();
+    this.loading = true;
     this.intervalId = setInterval(() => {
       this.updateTimeSinceLastLog();
+      this.loading = false;
     }, 1000);
   }
 

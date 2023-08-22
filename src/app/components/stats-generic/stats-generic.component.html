@@ -1,32 +1,47 @@
 <mat-grid-list cols="6" rowHeight="1:2" gutterSize="0.2rem">
     <mat-grid-tile colspan="2" rowspan="1">
-        <div class="cell logs-total">
+        <div class="cell logs-total" *ngIf="!loading">
             <span class="value">{{logs.length}}</span>
             <span class="label">total</span>
         </div>
+        <div class="cell" *ngIf="loading">
+            <mat-spinner [diameter]="50"></mat-spinner>
+        </div>
     </mat-grid-tile>
     <mat-grid-tile colspan="2" rowspan="1">
-        <div class="cell average-logs-per-day">
+        <div class="cell average-logs-per-day" *ngIf="!loading">
             <span class="value">{{averageLogsPerDay}}</span>
             <span class="label">moyenne par jour</span>
         </div>
+        <div class="cell" *ngIf="loading">
+            <mat-spinner [diameter]="50"></mat-spinner>
+        </div>
     </mat-grid-tile>
     <mat-grid-tile colspan="2" rowspan="1">
-        <div class="cell average-time-2-logs">
+        <div class="cell average-time-2-logs" *ngIf="!loading">
             <span class="value">{{averageTimeBetween2Logs}}</span>
             <span class="label">entre 2 cloplogs</span>
         </div>
-    </mat-grid-tile>
-    <mat-grid-tile colspan="3" rowspan="1">
-        <div class="cell shortest-diff">
-            <span class="value">{{shortestDiff}}</span>
-            <span class="label">plus court</span>
+        <div class="cell" *ngIf="loading">
+            <mat-spinner [diameter]="50"></mat-spinner>
         </div>
     </mat-grid-tile>
     <mat-grid-tile colspan="3" rowspan="1">
-        <div class="cell longest-diff">
+        <div class="cell shortest-diff" *ngIf="!loading">
+            <span class="value">{{shortestDiff}}</span>
+            <span class="label">plus court</span>
+        </div>
+        <div class="cell" *ngIf="loading">
+            <mat-spinner [diameter]="50"></mat-spinner>
+        </div>
+    </mat-grid-tile>
+    <mat-grid-tile colspan="3" rowspan="1">
+        <div class="cell longest-diff" *ngIf="!loading">
             <span class="value">{{longestDiff}}</span>
             <span class="label">plus long</span>
+        </div>
+        <div class="cell" *ngIf="loading">
+            <mat-spinner [diameter]="50"></mat-spinner>
         </div>
     </mat-grid-tile>
 </mat-grid-list>

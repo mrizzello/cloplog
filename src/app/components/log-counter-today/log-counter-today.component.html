@@ -1,4 +1,7 @@
-<div class="log-count">
+<div class="log-count" *ngIf="!loading">
     <div class="label">aujourd'hui</div>
     <div class="count">{{ todayLogsCount }}</div>
+</div>
+<div class="next-log" *ngIf="loading">
+    <mat-spinner [diameter]="70"></mat-spinner>
 </div>

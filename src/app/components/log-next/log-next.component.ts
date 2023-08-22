@@ -17,6 +17,7 @@ export class LogNextComponent implements OnDestroy {
   nextTime!: string;
   cssClass: string = 'no';
   subscription: Subscription;
+  loading: boolean = true;
 
   constructor(
     private dateFormat: DateFormatService,
@@ -42,6 +43,9 @@ export class LogNextComponent implements OnDestroy {
       this.nextTimestamp = Math.round(tmp.lastTimestamp + tmp.averageTimeInMinutes * 60 * this.factor);
       this.nextTime = this.dateFormat.formatTime(this.nextTimestamp);
       this.checkCurrentTime();
+      setTimeout(() => {
+        this.loading = false;
+      }, 1000);
     });
   }
 

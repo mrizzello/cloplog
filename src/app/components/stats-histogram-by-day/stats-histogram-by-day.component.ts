@@ -26,10 +26,11 @@ export class StatsHistogramByDayComponent {
   ngOnInit() {
     const groupedLogs: any[] = [];
     const limitDate = new Date();
+    limitDate.setUTCHours(0, 0, 0);
     limitDate.setDate(limitDate.getDate() - this.dayLimit);
     const limitTs = Math.floor(limitDate.getTime() / 1000);
 
-    this.logs.forEach((log: any) => {
+    this.logs.forEach((log: any) => {      
       if (limitTs < log.timestamp) {
         const logDate = this.dateFormat.formatDate(log.timestamp);
         const existingGroup = groupedLogs.find(group => group.date === logDate);
@@ -40,7 +41,7 @@ export class StatsHistogramByDayComponent {
         }
       }
     });
-    this.logs = groupedLogs;
+    this.logs = groupedLogs;    
     this.createSvg();
   }
 

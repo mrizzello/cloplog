@@ -10,6 +10,7 @@ import { UpdateDisplayService } from '../../services/update-display.service';
 export class LogCounterTodayComponent implements OnInit {
 
   todayLogsCount: number = 0;
+  loading: boolean = true;
 
   constructor(
     private dataStore: DatastoreService,
@@ -30,6 +31,9 @@ export class LogCounterTodayComponent implements OnInit {
           this.todayLogsCount = count;
         });
       }
+      setTimeout(() => {
+        this.loading = false;
+      }, 1000);
     });
   }
 

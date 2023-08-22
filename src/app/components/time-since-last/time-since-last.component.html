@@ -1,4 +1,7 @@
-<div class="time-since-last">
+<div class="time-since-last" *ngIf="!loading">
     <div class="label">dernière il y a</div>
     <div [innerHTML]="timeSinceLastLog" class="time"></div>
+</div>
+<div class="next-log" *ngIf="loading">
+    <mat-spinner [diameter]="30"></mat-spinner>
 </div>

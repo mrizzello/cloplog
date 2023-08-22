@@ -14,6 +14,7 @@ export class StatsGenericComponent {
   averageTimeBetween2Logs!: string;
   shortestDiff!: string;
   longestDiff!: string;
+  loading: boolean = true;
 
   constructor(
     private dateFormat: DateFormatService,
@@ -26,6 +27,9 @@ export class StatsGenericComponent {
     this.shortestDiff = this.dateFormat.formatHoursMinutes(tmp.shortestDiff);
     this.longestDiff = this.dateFormat.formatHoursMinutes(tmp.longestDiff);
     this.averageTimeBetween2Logs = this.dateFormat.formatHoursMinutes(tmp.averageTimeInMinutes);
+    setTimeout(() => {
+      this.loading = false;
+    }, 1000);
   }
 
 }
