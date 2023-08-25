@@ -1,5 +1,5 @@
 <div class="stats-container" [@fadeIn]>
     <h3>Statistiques</h3>
-    <app-stats-histogram-by-day *ngIf="logs.length>0" [logs]="logs"></app-stats-histogram-by-day>
+    <app-stats-histograms *ngIf="logs.length>0" [logs]="logs"></app-stats-histograms>
     <app-stats-generic *ngIf="logs.length>0" [logs]="logs"></app-stats-generic>
 </div>

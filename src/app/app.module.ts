@@ -22,9 +22,9 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { PageListComponent } from './pages/page-list/page-list.component';
 import { LogListLastComponent } from './components/log-list-last/log-list-last.component';
 import { LogsTodayTimelineComponent } from './components/logs-today-timeline/logs-today-timeline.component';
-import { StatsHistogramByDayComponent } from './components/stats-histogram-by-day/stats-histogram-by-day.component';
 import { StatsGenericComponent } from './components/stats-generic/stats-generic.component';
 import { LogNextComponent } from './components/log-next/log-next.component';
+import { StatsHistogramsComponent } from './components/stats-histograms/stats-histograms.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +43,7 @@ import { LogNextComponent } from './components/log-next/log-next.component';
     PageListComponent,
     LogListLastComponent,
     LogsTodayTimelineComponent,
-    StatsHistogramByDayComponent,
+    StatsHistogramsComponent,
     StatsGenericComponent
   ],
   imports: [
