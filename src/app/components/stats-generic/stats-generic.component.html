@@ -26,7 +26,16 @@
             <mat-spinner [diameter]="50"></mat-spinner>
         </div>
     </mat-grid-tile>
-    <mat-grid-tile colspan="3" rowspan="1">
+    <mat-grid-tile colspan="2" rowspan="1">
+        <div class="cell number-days" *ngIf="!loading">
+            <span class="value">{{numerOfDays}}</span>
+            <span class="label">jours</span>
+        </div>
+        <div class="cell" *ngIf="loading">
+            <mat-spinner [diameter]="50"></mat-spinner>
+        </div>
+    </mat-grid-tile>
+    <mat-grid-tile colspan="2" rowspan="1">
         <div class="cell shortest-diff" *ngIf="!loading">
             <span class="value">{{shortestDiff}}</span>
             <span class="label">plus court</span>
@@ -35,7 +44,7 @@
             <mat-spinner [diameter]="50"></mat-spinner>
         </div>
     </mat-grid-tile>
-    <mat-grid-tile colspan="3" rowspan="1">
+    <mat-grid-tile colspan="2" rowspan="1">
         <div class="cell longest-diff" *ngIf="!loading">
             <span class="value">{{longestDiff}}</span>
             <span class="label">plus long</span>

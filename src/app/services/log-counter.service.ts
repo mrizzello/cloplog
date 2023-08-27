@@ -52,6 +52,7 @@ export class LogCounterService {
     let averageTimeInMinutes = Math.round(totalDiff / totalCount / 60);
 
     return {
+      numerOfDays: groupedLogs.length,
       averageLogsPerDay: averageLogsPerDay,
       longestDiff: longestDiff,
       shortestDiff: shortestDiff,
