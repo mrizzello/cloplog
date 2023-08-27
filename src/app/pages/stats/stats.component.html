@@ -2,4 +2,5 @@
     <h3>Statistiques</h3>
     <app-stats-histograms *ngIf="logs.length>0" [logs]="logs"></app-stats-histograms>
     <app-stats-generic *ngIf="logs.length>0" [logs]="logs"></app-stats-generic>
+    <app-stats-day-type *ngIf="logs.length>0" [logs]="logs"></app-stats-day-type>
 </div>

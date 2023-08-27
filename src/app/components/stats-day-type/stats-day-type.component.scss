@@ -1,0 +1,18 @@
+.chart-container {
+
+    #day-type {
+        margin: 0;
+
+        .svg {
+            width: 100%;
+        }
+    }
+
+    caption {
+        display: block;
+        margin-bottom: 1rem;
+        font-size: 85%;
+        color: #666;
+        margin: 0;
+    }
+}

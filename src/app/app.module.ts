@@ -25,6 +25,7 @@ import { LogsTodayTimelineComponent } from './components/logs-today-timeline/log
 import { StatsGenericComponent } from './components/stats-generic/stats-generic.component';
 import { LogNextComponent } from './components/log-next/log-next.component';
 import { StatsHistogramsComponent } from './components/stats-histograms/stats-histograms.component';
+import { StatsDayTypeComponent } from './components/stats-day-type/stats-day-type.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { StatsHistogramsComponent } from './components/stats-histograms/stats-hi
     LogListLastComponent,
     LogsTodayTimelineComponent,
     StatsHistogramsComponent,
-    StatsGenericComponent
+    StatsGenericComponent,
+    StatsDayTypeComponent
   ],
   imports: [
     BrowserModule,

@@ -110,14 +110,6 @@ export class StatsHistogramsComponent {
       .attr("transform", `translate(0,${this.height - this.margin.bottom})`)
       .call(xAxis);
 
-    const { min, max } = data.reduce(
-      (result: any, day: any) => ({
-        min: Math.min(result.min, day.logs.length),
-        max: Math.max(result.max, day.logs.length)
-      }),
-      { min: 1000, max: 0 }
-    );
-
     let maxY = d3.max(data, (d: any) => { return d.logs.length }) as unknown as number;
     let yScale = d3.scaleLinear()
       .domain([0,maxY])
@@ -136,17 +128,7 @@ export class StatsHistogramsComponent {
     let xRangeValues = xScale.range();
     let xRange = xRangeValues[1] - xRangeValues[0];
     let bandWidth = 0.33 * Math.floor(xRange / data.length);
-
-    svg.append("g")
-      .selectAll()
-      .data(data)
-      .join("rect")
-      .attr("x", (d: any) => { return xScale(this.createDateFromDateString(d.date)) - 0.5 * bandWidth; })
-      .attr("y", (d: any) => { return yScale(0); })
-      .attr("height", (d: any) => { return 0; })
-      .attr("width", bandWidth)
-      .attr("fill", "#009688");
-
+    
     svg.append("g")
       .selectAll()
       .data(data)
