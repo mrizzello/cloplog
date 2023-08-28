@@ -54,9 +54,9 @@ export class StatsDayTypeComponent {
       .call(xAxis);
 
     const groupedData = d3.groups(this.logs, (item: any) => d3.timeDay.floor(new Date(item.timestamp * 1000)));
-    const opacity = d3.scaleLinear()
-      .domain([0, groupedData.length - 1])
-      .range([1, 0.1]);      
+    // const opacity = d3.scaleLinear()
+    //   .domain([0, groupedData.length - 1])
+    //   .range([1, 0.1]);
     groupedData.forEach((week: any, index: number) => {
       svg.append("g")
         .selectAll()
@@ -65,9 +65,10 @@ export class StatsDayTypeComponent {
         .attr("x", (d: any) => { return xScale(this.ts2Hours(d.timestamp)); })
         .attr("y", this.margin.bottom)
         .attr("height", this.height - 2 * this.margin.bottom)
-        .attr("width", 1)
+        .attr("width", 2)
         .attr("fill", "#009688")
-        .attr("opacity", opacity(index));
+        .attr("opacity", 0.2);
+        // .attr("opacity", opacity(index));
     });
 
   }
