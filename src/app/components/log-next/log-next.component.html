@@ -1,6 +1,11 @@
 <div class="next-log {{cssClass}}" *ngIf="!loading">
-    <div class="label">prochaine</div>
-    <div [innerHTML]="nextTime" class="time"></div>
+    <ng-container *ngIf="nextTime!==''; else noNextTime" >
+        <div class="label">prochaine</div>
+        <div [innerHTML]="nextTime" class="time"></div>
+    </ng-container>
+    <ng-template #noNextTime>
+        <mat-icon class="no-next-time">smoke_free</mat-icon>
+    </ng-template>
 </div>
 <div class="next-log" *ngIf="loading">
     <mat-spinner [diameter]="30"></mat-spinner>

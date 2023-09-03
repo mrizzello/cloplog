@@ -8,7 +8,14 @@
         line-height: 120%;
         margin-top: 0.33rem;
     }
-    &.go{
+
+    &.go {
         color: #009688;
+    }
+
+    .no-next-time {
+        font-size: 3rem;
+        height: 52px;
+        width: 52px;
     }
 }

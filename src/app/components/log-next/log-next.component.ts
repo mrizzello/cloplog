@@ -25,11 +25,12 @@ export class LogNextComponent implements OnDestroy {
     private dataStore: DatastoreService,
     private udService: UpdateDisplayService
   ) {
+    this.initialize()
     this.subscription = interval(1000).subscribe(() => {
       this.checkCurrentTime();
     });
     this.udService.updateDisplay$.subscribe(() => {
-      this.ngOnInit()
+      this.initialize();
     });
   }
 
@@ -37,15 +38,17 @@ export class LogNextComponent implements OnDestroy {
     this.subscription.unsubscribe();
   }
 
-  ngOnInit() {
+  initialize(){
     this.dataStore.getAll().then((logs: any[]) => {
-      let tmp = this.logCounter.doTheMath(logs);
-      this.nextTimestamp = Math.round(tmp.lastTimestamp + tmp.averageTimeInMinutes * 60 * this.factor);
-      this.nextTime = this.dateFormat.formatTime(this.nextTimestamp);
-      this.checkCurrentTime();
-      setTimeout(() => {
-        this.loading = false;
-      }, 1000);
+      if(logs.length > 1){
+        let tmp = this.logCounter.doTheMath(logs);
+        this.nextTimestamp = Math.round(tmp.lastTimestamp + tmp.averageTimeInMinutes * 60 * this.factor);
+        this.nextTime = this.dateFormat.formatTime(this.nextTimestamp);
+        this.checkCurrentTime();
+      }else{
+        this.nextTime = '';
+      }
+      this.loading = false;
     });
   }
 

@@ -27,10 +27,8 @@ export class TimeSinceLastComponent implements OnInit {
 
   initialize(){
     this.updateTimeSinceLastLog();
-    this.loading = true;
     this.intervalId = setInterval(() => {
       this.updateTimeSinceLastLog();
-      this.loading = false;
     }, 1000);
   }
 
@@ -46,10 +44,12 @@ export class TimeSinceLastComponent implements OnInit {
             const currentTime = new Date().getTime();            
             const timeDifference = currentTime - (logs[0].timestamp * 1000);
             this.timeSinceLastLog = this.formatTimeDifference(timeDifference);
+            this.loading = false;
           });
         });
       }else{
         this.timeSinceLastLog = '-';
+        this.loading = false;
       }
     });
   }
