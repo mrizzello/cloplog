@@ -46,6 +46,9 @@ export class StatsHistogramsComponent {
         this.createSvg('month');
         break;
       case 2:
+        this.createSvg('3month');
+        break;
+      case 3:
         this.createSvg('year');
         break;
     }
@@ -66,6 +69,10 @@ export class StatsHistogramsComponent {
       case 'month':
         data = this.logs.slice(0, 30);
         dateAgo.setDate(today.getDate() - 30);
+        break;
+      case '3month':
+        data = this.logs.slice(0, 90);
+        dateAgo.setDate(today.getDate() - 90);
         break;
       case 'year':
         data = this.logs.slice(0, 365);
@@ -98,13 +105,14 @@ export class StatsHistogramsComponent {
         xAxis.ticks(d3.timeDay.every(1), '%d.%m');
         break;
       case 'month':
+      case '3month':
         xAxis.ticks(d3.timeMonth.every(1), '%d.%m');
         break;
       case 'year':
         xAxis.ticks(d3.timeMonth.every(2), '%d.%m');
         break;
     }
-    
+
     svg.append("g")
       .attr("class", "x-axis")
       .attr("transform", `translate(0,${this.height - this.margin.bottom})`)
@@ -112,7 +120,7 @@ export class StatsHistogramsComponent {
 
     let maxY = d3.max(data, (d: any) => { return d.logs.length }) as unknown as number;
     let yScale = d3.scaleLinear()
-      .domain([0,maxY])
+      .domain([0, maxY])
       .range([this.height - this.margin.bottom, this.margin.top])
       .nice();
 
@@ -128,7 +136,7 @@ export class StatsHistogramsComponent {
     let xRangeValues = xScale.range();
     let xRange = xRangeValues[1] - xRangeValues[0];
     let bandWidth = 0.33 * Math.floor(xRange / data.length);
-    
+
     svg.append("g")
       .selectAll()
       .data(data)
@@ -139,16 +147,16 @@ export class StatsHistogramsComponent {
       .attr("width", bandWidth)
       .attr("fill", "#009688");
 
-    if( type == 'week' ){
+    if (type == 'week') {
       svg.selectAll("values")
-      .data(data)
-      .enter().append("text")
-      .attr("x", (d: any) => { return xScale(this.createDateFromDateString(d.date)); })
-      .attr("y", (d: any) => { return yScale(d.logs.length + 1); })
-      .attr("class", 'values')
-      .attr("text-anchor", "middle")
-      .attr("font-size", "0.75rem")
-      .text((d: any) => { return d.logs.length; });
+        .data(data)
+        .enter().append("text")
+        .attr("x", (d: any) => { return xScale(this.createDateFromDateString(d.date)); })
+        .attr("y", (d: any) => { return yScale(d.logs.length + 1); })
+        .attr("class", 'values')
+        .attr("text-anchor", "middle")
+        .attr("font-size", "0.75rem")
+        .text((d: any) => { return d.logs.length; });
     }
 
   }
