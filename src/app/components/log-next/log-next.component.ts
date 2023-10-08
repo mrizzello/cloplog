@@ -41,6 +41,16 @@ export class LogNextComponent implements OnDestroy {
   initialize(){
     this.dataStore.getAll().then((logs: any[]) => {
       if(logs.length > 1){
+
+        var daysAgo = new Date();
+        daysAgo.setDate(daysAgo.getDate() - 30);
+        daysAgo.setHours(4, 0, 0, 0);
+
+        var daysAgoTimestamp = Math.floor(daysAgo.getTime() / 1000);
+        logs = logs.filter(function(log) {
+            return log.timestamp > daysAgoTimestamp;
+        });
+        
         let tmp = this.logCounter.doTheMath(logs);
         this.nextTimestamp = Math.round(tmp.lastTimestamp + tmp.averageTimeInMinutes * 60 * this.factor);
         this.nextTime = this.dateFormat.formatTime(this.nextTimestamp);
